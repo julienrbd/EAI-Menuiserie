@@ -31,6 +31,9 @@ public class RdvCommercial implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateFin;
 
+    public RdvCommercial() {
+    }
+
     public RdvCommercial(Long id, Date dateDebut, Date dateFin, Commercial commercial) {
         this.id = id;
         this.dateDebut = dateDebut;

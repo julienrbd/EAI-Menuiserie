@@ -31,6 +31,9 @@ public class Creneau implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateFin;
 
+    public Creneau() {
+    }
+
     public Date getDateDebut() {
         return dateDebut;
     }

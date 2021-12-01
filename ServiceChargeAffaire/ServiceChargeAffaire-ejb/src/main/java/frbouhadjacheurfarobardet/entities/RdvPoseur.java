@@ -29,6 +29,9 @@ public class RdvPoseur implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateDebut;
 
+    public RdvPoseur() {
+    }
+
     public Date getDateDebut() {
         return dateDebut;
     }
