@@ -6,10 +6,12 @@
 package frbouhadjacheurfarobardet.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -24,6 +26,87 @@ public class Client implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
+    private String adresse;
+    private String mail;
+    private String tel;
+    private String geolocalisation;
+    @OneToMany(mappedBy = "client")
+    private List<Affaire> listeAffaire;
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getGeolocalisation() {
+        return geolocalisation;
+    }
+
+    public void setGeolocalisation(String geolocalisation) {
+        this.geolocalisation = geolocalisation;
+    }
+
+    public List<Affaire> getListeAffaire() {
+        return listeAffaire;
+    }
+
+    public void setListeAffaire(List<Affaire> listeAffaire) {
+        this.listeAffaire = listeAffaire;
+    }
+
+    public Client(Long id, String nom, String prenom, String adresse, String mail, String tel, String geolocalisation) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.tel = tel;
+        this.geolocalisation = geolocalisation;
+    }
+
+    public Client(Long id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    public Client() {
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
     public Long getId() {
         return id;
     }
