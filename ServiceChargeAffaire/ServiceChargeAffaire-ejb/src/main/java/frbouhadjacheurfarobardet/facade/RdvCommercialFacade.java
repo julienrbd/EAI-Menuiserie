@@ -5,6 +5,8 @@
  */
 package frbouhadjacheurfarobardet.facade;
 
+import frbouhadjacheurfarobardet.entities.Affaire;
+import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.entities.RdvCommercial;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -28,5 +30,12 @@ public class RdvCommercialFacade extends AbstractFacade<RdvCommercial> implement
     public RdvCommercialFacade() {
         super(RdvCommercial.class);
     }
+
+    @Override
+    public void creerRdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial) {
+        RdvCommercial rdv = new RdvCommercial(affaire, creneau, idCommercial);
+        this.create(rdv);
+    }
+    
     
 }

@@ -6,6 +6,7 @@
 package frbouhadjacheurfarobardet.facade;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
+import frbouhadjacheurfarobardet.entities.Client;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -15,6 +16,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface AffaireFacadeLocal {
+    
+    void creerAffaire(Client client, List<String> adresses, String geolocalisation);
 
     void create(Affaire affaire);
 

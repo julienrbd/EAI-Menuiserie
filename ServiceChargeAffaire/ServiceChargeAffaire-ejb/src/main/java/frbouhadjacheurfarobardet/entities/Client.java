@@ -6,6 +6,7 @@
 package frbouhadjacheurfarobardet.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +34,16 @@ public class Client implements Serializable {
     @OneToMany(mappedBy = "client")
     private List<Affaire> listeAffaire;
 
+    public Client(String nom, String prenom, String adresse, String mail, String tel, String geolocalisation) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.tel = tel;
+        this.geolocalisation = geolocalisation;
+        this.listeAffaire = new ArrayList<>();
+    }
+    
     public String getAdresse() {
         return adresse;
     }

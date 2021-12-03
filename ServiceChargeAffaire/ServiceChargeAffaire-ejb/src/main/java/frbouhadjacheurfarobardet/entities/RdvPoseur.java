@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -26,49 +27,22 @@ public class RdvPoseur implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateDebut;
+    @OneToOne
+    private Affaire affaire;
+    private Long idPoseur;
+    @ManyToOne
+    private Creneau creneau;
 
     public RdvPoseur() {
     }
 
-    public Date getDateDebut() {
-        return dateDebut;
+    public RdvPoseur(Affaire affaire, Creneau creneau, Long idPoseur) {
+        this.affaire = affaire;
+        this.idPoseur = idPoseur;
+        this.creneau = creneau;
     }
 
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
-    }
-
-    public Date getDateFin() {
-        return dateFin;
-    }
-
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
-    }
-
-    public Poseur getPoseur() {
-        return poseur;
-    }
-
-    public void setPoseur(Poseur poseur) {
-        this.poseur = poseur;
-    }
-
-    public RdvPoseur(Long id, Date dateDebut, Date dateFin, Poseur poseur) {
-        this.id = id;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.poseur = poseur;
-    }
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateFin;
-
-    @ManyToOne
-    private Poseur poseur;
     
-
     public Long getId() {
         return id;
     }
@@ -77,6 +51,31 @@ public class RdvPoseur implements Serializable {
         this.id = id;
     }
 
+    public Affaire getAffaire() {
+        return affaire;
+    }
+
+    public void setAffaire(Affaire affaire) {
+        this.affaire = affaire;
+    }
+
+    public Long getIdPoseur() {
+        return idPoseur;
+    }
+
+    public void setIdPoseur(Long idPoseur) {
+        this.idPoseur = idPoseur;
+    }
+
+    public Creneau getCreneau() {
+        return creneau;
+    }
+
+    public void setCreneau(Creneau creneau) {
+        this.creneau = creneau;
+    }
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

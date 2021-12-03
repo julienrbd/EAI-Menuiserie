@@ -6,6 +6,7 @@
 package frbouhadjacheurfarobardet.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,19 +25,42 @@ public class Affaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String etat;
+
+    private EtatAffaire etat;
+
+    private String geolocalisation;
+
+    private List<String> adresses;
+
     private Boolean encaissement1;
+
     private Boolean encaissement2;
-    @OneToOne(mappedBy = "affaire")
-    private Commande commande;
+
+    private Long idCommande;
     @ManyToOne
     private Client client;
 
-    public String getEtat() {
+    public List<String> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<String> adresses) {
+        this.adresses = adresses;
+    }
+
+    public String getGeolocalisation() {
+        return geolocalisation;
+    }
+
+    public void setGeolocalisation(String geolocalisation) {
+        this.geolocalisation = geolocalisation;
+    }
+
+    public EtatAffaire getEtat() {
         return etat;
     }
 
-    public void setEtat(String etat) {
+    public void setEtat(EtatAffaire etat) {
         this.etat = etat;
     }
 
@@ -56,14 +80,6 @@ public class Affaire implements Serializable {
         this.encaissement2 = encaissement2;
     }
 
-    public Commande getCommande() {
-        return commande;
-    }
-
-    public void setCommande(Commande commande) {
-        this.commande = commande;
-    }
-
     public Client getClient() {
         return client;
     }
@@ -75,13 +91,13 @@ public class Affaire implements Serializable {
     public Affaire() {
     }
 
-    public Affaire(Long id, String etat, Boolean encaissement1, Boolean encaissement2, Commande commande, Client client) {
-        this.id = id;
-        this.etat = etat;
-        this.encaissement1 = encaissement1;
-        this.encaissement2 = encaissement2;
-        this.commande = commande;
+    public Affaire(Client client, List<String> adresses, String geolocalisation) {
+        this.geolocalisation = geolocalisation;
+        this.adresses = adresses;
         this.client = client;
+        this.encaissement1 = false;
+        this.encaissement2 = false;
+        this.etat = EtatAffaire.CREE;
     }
 
     public Long getId() {
@@ -90,6 +106,14 @@ public class Affaire implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdCommande() {
+        return idCommande;
+    }
+
+    public void setIdCommande(Long idCommande) {
+        this.idCommande = idCommande;
     }
 
     @Override

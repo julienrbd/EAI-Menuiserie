@@ -5,6 +5,8 @@
  */
 package frbouhadjacheurfarobardet.facade;
 
+import frbouhadjacheurfarobardet.entities.Affaire;
+import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.entities.RdvPoseur;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,6 +29,12 @@ public class RdvPoseurFacade extends AbstractFacade<RdvPoseur> implements RdvPos
 
     public RdvPoseurFacade() {
         super(RdvPoseur.class);
+    }
+
+    @Override
+    public void creerRdvPose(Affaire affaire, Creneau creneau, Long idPoseur) {
+        RdvPoseur rdvPoseur = new RdvPoseur(affaire, creneau, idPoseur);
+        this.create(rdvPoseur);
     }
     
 }

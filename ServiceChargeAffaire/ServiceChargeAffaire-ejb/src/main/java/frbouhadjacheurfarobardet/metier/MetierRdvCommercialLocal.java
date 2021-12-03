@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package frbouhadjacheurfarobardet.facade;
+package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
 import frbouhadjacheurfarobardet.entities.Creneau;
-import frbouhadjacheurfarobardet.entities.RdvCommercial;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.Local;
 
 /**
@@ -16,22 +17,7 @@ import javax.ejb.Local;
  * @author JulienRobardet
  */
 @Local
-public interface RdvCommercialFacadeLocal {
-
-    void create(RdvCommercial rdvCommercial);
-
-    void edit(RdvCommercial rdvCommercial);
-
-    void remove(RdvCommercial rdvCommercial);
-
-    RdvCommercial find(Object id);
-
-    List<RdvCommercial> findAll();
-
-    List<RdvCommercial> findRange(int[] range);
-
-    int count();
-
+public interface MetierRdvCommercialLocal {
     public void creerRdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial);
-    
+    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin);
 }

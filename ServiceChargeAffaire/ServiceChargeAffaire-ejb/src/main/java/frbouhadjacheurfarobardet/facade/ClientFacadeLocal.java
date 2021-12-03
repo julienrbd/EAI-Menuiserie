@@ -5,6 +5,7 @@
  */
 package frbouhadjacheurfarobardet.facade;
 
+import frbouhadjacheurfarobardet.entities.Affaire;
 import frbouhadjacheurfarobardet.entities.Client;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,9 @@ public interface ClientFacadeLocal {
     List<Client> findRange(int[] range);
 
     int count();
+
+    public void CreerClient(String nom, String prenom, String adresse, String mail, String tel, String geolocalisation);
+
+    public void addAffaire(Client client, Affaire affaire);
     
 }

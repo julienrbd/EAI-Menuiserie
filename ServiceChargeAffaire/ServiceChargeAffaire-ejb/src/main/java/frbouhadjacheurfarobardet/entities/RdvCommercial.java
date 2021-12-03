@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
 /**
@@ -26,47 +27,44 @@ public class RdvCommercial implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateDebut;
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateFin;
+    @OneToOne
+    private Creneau creneau;
+    
+    private Long idCommercial;
+    
+    @OneToOne
+    private Affaire affaire;
 
     public RdvCommercial() {
     }
 
-    public RdvCommercial(Long id, Date dateDebut, Date dateFin, Commercial commercial) {
-        this.id = id;
-        this.dateDebut = dateDebut;
-        this.dateFin = dateFin;
-        this.commercial = commercial;
+    public RdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Date getDateDebut() {
-        return dateDebut;
+    public Creneau getCreneau() {
+        return creneau;
     }
 
-    public void setDateDebut(Date dateDebut) {
-        this.dateDebut = dateDebut;
+    public void setCreneau(Creneau creneau) {
+        this.creneau = creneau;
     }
 
-    public Date getDateFin() {
-        return dateFin;
+    public Long getIdCommercial() {
+        return idCommercial;
     }
 
-    public void setDateFin(Date dateFin) {
-        this.dateFin = dateFin;
+    public void setIdCommercial(Long idCommercial) {
+        this.idCommercial = idCommercial;
     }
 
-    public Commercial getCommercial() {
-        return commercial;
+    public Affaire getAffaire() {
+        return affaire;
     }
 
-    public void setCommercial(Commercial commercial) {
-        this.commercial = commercial;
+    public void setAffaire(Affaire affaire) {
+        this.affaire = affaire;
     }
-
-    @ManyToOne
-    private Commercial commercial;
 
     public Long getId() {
         return id;
