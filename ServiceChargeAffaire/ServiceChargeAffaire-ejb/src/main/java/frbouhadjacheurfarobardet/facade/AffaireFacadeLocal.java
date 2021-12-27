@@ -15,24 +15,22 @@ import javax.ejb.Local;
  * @author JulienRobardet
  */
 @Local
-public interface ClientFacadeLocal {
+public interface AffaireFacadeLocal {
+    
+    void creerAffaire(Client client, List<String> adresses, String geolocalisation);
 
-    void create(Client client);
+    void create(Affaire affaire);
 
-    void edit(Client client);
+    void edit(Affaire affaire);
 
-    void remove(Client client);
+    void remove(Affaire affaire);
 
-    Client find(Object id);
+    Affaire find(Object id);
 
-    List<Client> findAll();
+    List<Affaire> findAll();
 
-    List<Client> findRange(int[] range);
+    List<Affaire> findRange(int[] range);
 
     int count();
-
-    public void CreerClient(String nom, String prenom, String adresse, String mail, String tel, String geolocalisation);
-
-    public void addAffaire(Client client, Affaire affaire);
     
 }

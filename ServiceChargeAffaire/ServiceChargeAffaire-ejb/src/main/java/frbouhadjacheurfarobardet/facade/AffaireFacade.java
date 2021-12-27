@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  * @author JulienRobardet
  */
 @Stateless
-public class ClientFacade extends AbstractFacade<Client> implements ClientFacadeLocal {
+public class AffaireFacade extends AbstractFacade<Affaire> implements AffaireFacadeLocal {
 
     @PersistenceContext(unitName = "frbouhadjacheurfarobardet_ServiceChargeAffaire-ejb_ejb_1.0PU")
     private EntityManager em;
@@ -27,23 +27,13 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         return em;
     }
 
-    public ClientFacade() {
-        super(Client.class);
+    public AffaireFacade() {
+        super(Affaire.class);
     }
 
     @Override
-    public void CreerClient(String nom, String prenom, String adresse, String mail, String tel, String geolocalisation) {
-        Client client = new Client(nom, prenom, adresse, mail, tel, geolocalisation);
-        this.create(client);
-    }
-
-    @Override
-    public void addAffaire(Client client , Affaire affaire) {
-        client = this.find(client.getId());
-        List<Affaire> list = client.getListeAffaire();
-        list.add(affaire);
-        client.setListeAffaire(list);
-        this.edit(client);
+    public void creerAffaire(Client client, List<String> adresses, String geolocalisation) {
+        Affaire affaire = new Affaire(client, adresses, geolocalisation);
     }
     
 }

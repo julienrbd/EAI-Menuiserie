@@ -6,10 +6,13 @@
 package frbouhadjacheurfarobardet.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,12 +26,94 @@ public class Affaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private EtatAffaire etat;
+
+    private String geolocalisation;
+
+    private List<String> adresses;
+
+    private Boolean encaissement1;
+
+    private Boolean encaissement2;
+
+    private Long idCommande;
+    @ManyToOne
+    private Client client;
+
+    public List<String> getAdresses() {
+        return adresses;
+    }
+
+    public void setAdresses(List<String> adresses) {
+        this.adresses = adresses;
+    }
+
+    public String getGeolocalisation() {
+        return geolocalisation;
+    }
+
+    public void setGeolocalisation(String geolocalisation) {
+        this.geolocalisation = geolocalisation;
+    }
+
+    public EtatAffaire getEtat() {
+        return etat;
+    }
+
+    public void setEtat(EtatAffaire etat) {
+        this.etat = etat;
+    }
+
+    public Boolean getEncaissement1() {
+        return encaissement1;
+    }
+
+    public void setEncaissement1(Boolean encaissement1) {
+        this.encaissement1 = encaissement1;
+    }
+
+    public Boolean getEncaissement2() {
+        return encaissement2;
+    }
+
+    public void setEncaissement2(Boolean encaissement2) {
+        this.encaissement2 = encaissement2;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public Affaire() {
+    }
+
+    public Affaire(Client client, List<String> adresses, String geolocalisation) {
+        this.geolocalisation = geolocalisation;
+        this.adresses = adresses;
+        this.client = client;
+        this.encaissement1 = false;
+        this.encaissement2 = false;
+        this.etat = EtatAffaire.CREE;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdCommande() {
+        return idCommande;
+    }
+
+    public void setIdCommande(Long idCommande) {
+        this.idCommande = idCommande;
     }
 
     @Override
