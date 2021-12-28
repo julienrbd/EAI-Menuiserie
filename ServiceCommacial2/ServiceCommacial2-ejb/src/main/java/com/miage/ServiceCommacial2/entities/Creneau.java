@@ -34,31 +34,31 @@ public class Creneau implements Serializable {
     private Long id;
 
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateDebut;
+    private Calendar dateDebut;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateFin;
+    private Calendar dateFin;
 
     public Creneau() {
     }
 
-    public Date getDateDebut() {
+    public Calendar getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(Calendar dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public Calendar getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(Calendar dateFin) {
         this.dateFin = dateFin;
     }
 
-    public Creneau(Long id, Date dateDebut, Date dateFin) {
+    public Creneau(Long id, Calendar dateDebut, Calendar dateFin) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
