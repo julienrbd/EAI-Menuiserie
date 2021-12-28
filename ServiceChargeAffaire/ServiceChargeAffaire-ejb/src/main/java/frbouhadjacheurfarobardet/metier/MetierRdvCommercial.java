@@ -9,6 +9,7 @@ import frbouhadjacheurfarobardet.entities.Affaire;
 import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.facade.RdvCommercialFacadeLocal;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -32,9 +33,9 @@ public class MetierRdvCommercial implements MetierRdvCommercialLocal {
     }
 
     @Override
-    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin) {
-        Map<Long, Creneau> listeDisponibilite = new HashMap<Long, Creneau>();
-        //liste disponibilite = resultat requeteapi
+    public Map<Long, List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin) {
+        Map<Long, List<Creneau>> listeDisponibilite = new HashMap<Long, List<Creneau>>();
+//        liste disponibilite = resultat requeteapi
         return listeDisponibilite;
     }
 
