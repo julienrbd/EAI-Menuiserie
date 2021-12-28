@@ -42,6 +42,7 @@ public class Commercial implements Serializable {
       
         this.Name = name;
         this.FirstName = firstname;
+        
       
     }
 
@@ -53,6 +54,16 @@ public class Commercial implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
+    public List<Creneau> getCreneau() {
+        return Creneau;
+    }
+
+    public void setVoyages(List<Creneau> Creneau) {
+        this.Creneau = Creneau;
+    }
+
 
     @Override
     public int hashCode() {
