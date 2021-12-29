@@ -6,7 +6,9 @@
 package com.miage.ServiceCommercial2.metier;
 
 import com.miage.ServiceCommacial2.entities.Creneau;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import javax.ejb.Local;
 
@@ -16,5 +18,5 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionCreneauLocal {
-    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin);
+     public Map<Long,List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin);
 }
