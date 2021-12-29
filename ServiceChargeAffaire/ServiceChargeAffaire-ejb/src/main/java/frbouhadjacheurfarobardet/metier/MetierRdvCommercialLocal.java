@@ -7,6 +7,7 @@ package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
 import frbouhadjacheurfarobardet.entities.Creneau;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -19,5 +20,5 @@ import javax.ejb.Local;
 @Local
 public interface MetierRdvCommercialLocal {
     public void creerRdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial);
-    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin);
+    public Map<Long, List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin);
 }
