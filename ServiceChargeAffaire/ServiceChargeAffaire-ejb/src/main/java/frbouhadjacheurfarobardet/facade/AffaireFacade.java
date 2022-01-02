@@ -34,6 +34,7 @@ public class AffaireFacade extends AbstractFacade<Affaire> implements AffaireFac
     @Override
     public void creerAffaire(Client client, List<String> adresses, String geolocalisation) {
         Affaire affaire = new Affaire(client, adresses, geolocalisation);
+        this.create(affaire);
     }
     
 }

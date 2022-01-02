@@ -30,16 +30,15 @@ public class RdvPoseur implements Serializable {
     @OneToOne(mappedBy = "rdvPoseur")
     private Affaire affaire;
     private Long idPoseur;
-    @ManyToOne
-    private Creneau creneau;
+    private Long idCreneau;
 
     public RdvPoseur() {
     }
 
-    public RdvPoseur(Affaire affaire, Creneau creneau, Long idPoseur) {
+    public RdvPoseur(Affaire affaire, Long creneau, Long idPoseur) {
         this.affaire = affaire;
         this.idPoseur = idPoseur;
-        this.creneau = creneau;
+        this.idCreneau = creneau;
     }
 
     
@@ -67,12 +66,12 @@ public class RdvPoseur implements Serializable {
         this.idPoseur = idPoseur;
     }
 
-    public Creneau getCreneau() {
-        return creneau;
+    public Long getIdCreneau() {
+        return idCreneau;
     }
 
-    public void setCreneau(Creneau creneau) {
-        this.creneau = creneau;
+    public void setIdCreneau(Long idCreneau) {
+        this.idCreneau = idCreneau;
     }
     
     

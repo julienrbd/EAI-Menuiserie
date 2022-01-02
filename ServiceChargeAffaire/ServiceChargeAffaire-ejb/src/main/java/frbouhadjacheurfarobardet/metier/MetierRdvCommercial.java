@@ -6,7 +6,6 @@
 package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.facade.RdvCommercialFacadeLocal;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,14 +27,13 @@ public class MetierRdvCommercial implements MetierRdvCommercialLocal {
     private RdvCommercialFacadeLocal rdvCommercialFacade;
 
     @Override
-    public void creerRdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial) {
-        this.rdvCommercialFacade.creerRdvCommercial(affaire, creneau, idCommercial);
+    public void creerRdvCommercial(Affaire affaire, Long idCreneau, Long idCommercial) {
+        this.rdvCommercialFacade.creerRdvCommercial(affaire, idCreneau, idCommercial);
     }
-
+    
     @Override
-    public Map<Long, List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin) {
-        Map<Long, List<Creneau>> listeDisponibilite = new HashMap<Long, List<Creneau>>();
-//        liste disponibilite = resultat requeteapi
+    public Map<Long, List<Long>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin) {
+        Map<Long, List<Long>> listeDisponibilite = new HashMap<Long, List<Long>>();
         return listeDisponibilite;
     }
 
