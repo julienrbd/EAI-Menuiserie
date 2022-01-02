@@ -6,7 +6,6 @@
 package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import java.util.Date;
 import java.util.Map;
 import javax.ejb.Local;
@@ -18,7 +17,7 @@ import javax.ejb.Local;
 @Local
 public interface MetierRdvPoseLocal {
 
-    public void creerRdvPose(Affaire affaire, Creneau creneau, Long idPoseur);
-    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin);
+    public void creerRdvPose(Affaire affaire, Long idCreneau, Long idPoseur);
+    public Map<Long, Long> InterrogerDisponibilite(Date DateDebut, Date DateFin);
     
 }

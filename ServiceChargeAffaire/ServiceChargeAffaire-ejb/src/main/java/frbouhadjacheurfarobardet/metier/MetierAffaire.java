@@ -7,7 +7,6 @@ package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
 import frbouhadjacheurfarobardet.entities.Client;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.entities.EtatAffaire;
 import frbouhadjacheurfarobardet.facade.AffaireFacadeLocal;
 import java.util.List;

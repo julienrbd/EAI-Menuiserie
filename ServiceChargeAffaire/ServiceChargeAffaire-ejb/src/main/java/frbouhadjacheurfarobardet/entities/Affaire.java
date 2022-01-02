@@ -46,6 +46,19 @@ public class Affaire implements Serializable {
     @OneToOne
     private RdvPoseur rdvPoseur;
 
+    public Affaire(Long id, EtatAffaire etat, String geolocalisation, List<String> adresses, Boolean encaissement1, Boolean encaissement2, Long idCommande, Client client, RdvCommercial rdvCommercial, RdvPoseur rdvPoseur) {
+        this.id = id;
+        this.etat = etat;
+        this.geolocalisation = geolocalisation;
+        this.adresses = adresses;
+        this.encaissement1 = encaissement1;
+        this.encaissement2 = encaissement2;
+        this.idCommande = idCommande;
+        this.client = client;
+        this.rdvCommercial = rdvCommercial;
+        this.rdvPoseur = rdvPoseur;
+    }
+
     public List<String> getAdresses() {
         return adresses;
     }

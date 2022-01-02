@@ -6,7 +6,6 @@
 package frbouhadjacheurfarobardet.services;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.metier.MetierRdvCommercialLocal;
 import java.util.Calendar;
 import java.util.List;
@@ -25,7 +24,7 @@ public class ServiceRdvCommercial implements ServiceRdvCommercialLocal {
 
     @EJB
     private MetierRdvCommercialLocal metierRdvCommercial;
-
+/*
     private void prendreRdvCommercial(Affaire affaire){
         Calendar DateDebut;
         DateDebut = Calendar.getInstance();
@@ -63,4 +62,5 @@ public class ServiceRdvCommercial implements ServiceRdvCommercialLocal {
         
 
     }
+*/
 }

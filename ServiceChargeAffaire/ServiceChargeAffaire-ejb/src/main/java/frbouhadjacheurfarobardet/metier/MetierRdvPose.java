@@ -6,7 +6,6 @@
 package frbouhadjacheurfarobardet.metier;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.facade.RdvPoseurFacadeLocal;
 import java.util.Date;
 import java.util.HashMap;
@@ -26,13 +25,13 @@ public class MetierRdvPose implements MetierRdvPoseLocal {
     private RdvPoseurFacadeLocal rdvPoseurFacade;
 
     @Override
-    public void creerRdvPose(Affaire affaire, Creneau creneau, Long idPoseur) {
-        this.rdvPoseurFacade.creerRdvPose(affaire, creneau, idPoseur);
+    public void creerRdvPose(Affaire affaire, Long idCreneau, Long idPoseur) {
+        this.rdvPoseurFacade.creerRdvPose(affaire, idCreneau, idPoseur);
     }
 
     @Override
-    public Map<Long, Creneau> InterrogerDisponibilite(Date DateDebut, Date DateFin) {
-        Map<Long, Creneau> listeDisponibilite = new HashMap<Long, Creneau>();
+    public Map<Long, Long> InterrogerDisponibilite(Date DateDebut, Date DateFin) {
+        Map<Long, Long> listeDisponibilite = new HashMap<Long, Long>();
         //liste disponibilite = resultat requeteapi
         return listeDisponibilite;
     }

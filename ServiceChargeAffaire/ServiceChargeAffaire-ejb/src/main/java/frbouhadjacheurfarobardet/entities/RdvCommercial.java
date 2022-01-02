@@ -27,8 +27,7 @@ public class RdvCommercial implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToOne
-    private Creneau creneau;
+    private Long idCreneau;
     
     private Long idCommercial;
     
@@ -38,18 +37,12 @@ public class RdvCommercial implements Serializable {
     public RdvCommercial() {
     }
 
-    public RdvCommercial(Affaire affaire, Creneau creneau, Long idCommercial) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public RdvCommercial(Long idCreneau, Long idCommercial, Affaire affaire) {
+        this.idCreneau = idCreneau;
+        this.idCommercial = idCommercial;
+        this.affaire = affaire;
     }
-
-    public Creneau getCreneau() {
-        return creneau;
-    }
-
-    public void setCreneau(Creneau creneau) {
-        this.creneau = creneau;
-    }
-
+    
     public Long getIdCommercial() {
         return idCommercial;
     }

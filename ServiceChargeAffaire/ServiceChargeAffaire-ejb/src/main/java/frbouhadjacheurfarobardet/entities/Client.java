@@ -43,6 +43,18 @@ public class Client implements Serializable {
         this.geolocalisation = geolocalisation;
         this.listeAffaire = new ArrayList<>();
     }
+
+    public Client(Long id, String nom, String prenom, String adresse, String mail, String tel, String geolocalisation, List<Affaire> listeAffaire) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.mail = mail;
+        this.tel = tel;
+        this.geolocalisation = geolocalisation;
+        this.listeAffaire = listeAffaire;
+    }
+    
     
     public String getAdresse() {
         return adresse;

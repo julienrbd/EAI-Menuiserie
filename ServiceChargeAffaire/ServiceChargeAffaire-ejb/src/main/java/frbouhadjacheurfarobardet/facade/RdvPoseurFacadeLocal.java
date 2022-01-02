@@ -6,7 +6,6 @@
 package frbouhadjacheurfarobardet.facade;
 
 import frbouhadjacheurfarobardet.entities.Affaire;
-import frbouhadjacheurfarobardet.entities.Creneau;
 import frbouhadjacheurfarobardet.entities.RdvPoseur;
 import java.util.List;
 import javax.ejb.Local;
@@ -32,6 +31,6 @@ public interface RdvPoseurFacadeLocal {
 
     int count();
 
-    public void creerRdvPose(Affaire affaire, Creneau creneau, Long idPoseur);
+    public void creerRdvPose(Affaire affaire, Long idCreneau, Long idPoseur);
     
 }
