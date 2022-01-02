@@ -27,7 +27,7 @@ public class RdvPoseur implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @OneToOne
+    @OneToOne(mappedBy = "rdvPoseur")
     private Affaire affaire;
     private Long idPoseur;
     @ManyToOne
