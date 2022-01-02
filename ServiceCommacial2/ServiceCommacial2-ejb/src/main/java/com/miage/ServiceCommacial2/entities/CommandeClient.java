@@ -27,6 +27,8 @@ public class CommandeClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
+    private int idc;
    
     private String ReferenceCatalogue;
 
