@@ -32,23 +32,6 @@ public class CommercialFacade extends AbstractFacade<Commercial> implements Comm
     public CommercialFacade() {
         super(Commercial.class);
     }
-    
-        @Override
-    public Commercial findByPrenomAndNom(String Name, String FirstName) {
-        try {
-            CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-            CriteriaQuery<Commercial> cq = cb.createQuery(Commercial.class);
-            Root<Commercial> root = cq.from(Commercial.class);
-            cq.where(
-                    cb.and(
-                            cb.equal(cb.upper(root.get("Name").as(String.class)), Name.toUpperCase()),
-                            cb.equal(cb.upper(root.get("FirstName").as(String.class)), FirstName.toUpperCase())
-                    )
-            );
-            return getEntityManager().createQuery(cq).getSingleResult();
-        } catch (NoResultException noRes) {
-            return null;
-        }
-    }
+  
     
 }

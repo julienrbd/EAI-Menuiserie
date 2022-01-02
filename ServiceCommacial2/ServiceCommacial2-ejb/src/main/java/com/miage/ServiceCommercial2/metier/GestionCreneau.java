@@ -8,8 +8,6 @@ package com.miage.ServiceCommercial2.metier;
 import com.miage.ServiceCommacial2.entities.CommandeClient;
 import com.miage.ServiceCommacial2.entities.Commercial;
 import com.miage.ServiceCommacial2.entities.Creneau;
-
-import com.miage.servicesCommercial2.facacde.CommandeClientFacadeLocal;
 import com.miage.servicesCommercial2.facacde.CommercialFacadeLocal;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,14 +26,16 @@ import javax.ejb.Stateless;
 public class GestionCreneau implements GestionCreneauLocal {
 
     @EJB
-    private CommercialFacadeLocal Commercial;
+    private CommercialFacadeLocal commercialFacade;
+
+ 
 
     @Override
     public Map<Long, List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin) {
 
         Map<Long, List<Creneau>> listeDisponibilite = new HashMap<Long, List<Creneau>>();
         List<Commercial> ListCommercial = new ArrayList<Commercial>();
-        ListCommercial = this.Commercial.findAll();
+        ListCommercial = this.commercialFacade.findAll();
         List<Creneau> ListCreneau = new ArrayList<Creneau>();
         List<Long> ListIDcommercial = new ArrayList<Long>();
 

@@ -27,47 +27,43 @@ public class CommandeClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="ReferenceCatalogue", nullable = false)
+   
     private String ReferenceCatalogue;
 
-    @Column(name="CoteExact", nullable = false)
+    
     private String CoteExact;
     
-    @Column(name="Tarif", nullable = false)
+  
     private String Tarif;
 
-    @Column(name="IDRDV", nullable = false)
-    private String IDRDV;
+ 
     
-      @OneToOne(optional = true, fetch = FetchType.EAGER)
-    @JoinColumn(name = "ID_COMMERCIAL", nullable = true)
+      @OneToOne
     private Commercial commercial;
       
-        @Column(name="STATUT", nullable = false)
+        
     private String statut;
     
     
        public static final String statutDebutCommande = "Commande en cours";
     public static final String statutCommandeValidé = "Commande Validé";
     
-    public Long getIdIdCommande() {
-        return id;
+    public CommandeClient(){
+        
     }
-
-    public void setIdIdCommande(Long id) {
-        this.id = id;
-    }
+ 
     
-public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif, String IDRDV,Commercial commercial){
+public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial,String statut){
         this.ReferenceCatalogue = ReferenceCatalogue;
         this.CoteExact = CoteExact;
         this.Tarif = Tarif;
-        this.IDRDV = IDRDV;
         this.commercial=commercial;
         this.statut=statut;
+    
         
               
     }
+
  public String getReferenceCatalogue() {
         return ReferenceCatalogue;
     }
@@ -98,13 +94,7 @@ public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,
     public void setStatut(String statut) {
         this.statut = statut;
     }
-     public String getIDRDV() {
-        return IDRDV;
-    }
-
-    public void setIDRDV(String IDRDV) {
-        this.IDRDV = IDRDV;
-    }
+ 
     @Override
     public int hashCode() {
         int hash = 0;

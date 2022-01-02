@@ -5,6 +5,8 @@
  */
 package com.miage.ServiceCommercial2.metier;
 
+import com.miage.ServiceCommacial2.entities.CommandeClient;
+import com.miage.ServiceCommacial2.entities.Commercial;
 import javax.ejb.Local;
 
 /**
@@ -13,6 +15,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionCommandeClientLocal {
-     public void ValiderCommande(Long idCommande);
+    
+      public void  creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial);
+      public void ValiderCommande(Long idCommande);
     
 }

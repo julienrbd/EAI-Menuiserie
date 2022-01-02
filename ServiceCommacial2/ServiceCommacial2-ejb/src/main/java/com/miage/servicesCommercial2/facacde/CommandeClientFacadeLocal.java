@@ -17,9 +17,11 @@ import javax.ejb.Local;
 @Local
 public interface CommandeClientFacadeLocal {
 
+ 
+
     void create(CommandeClient commandeClient);
     
-     public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, String IDVRDV, Commercial commercial);
+    public void  creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) ;
 
     void edit(CommandeClient commandeClient);
 

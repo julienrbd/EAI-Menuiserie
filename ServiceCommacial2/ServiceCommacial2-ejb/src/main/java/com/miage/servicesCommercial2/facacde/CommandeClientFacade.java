@@ -6,6 +6,8 @@
 package com.miage.servicesCommercial2.facacde;
 
 import com.miage.ServiceCommacial2.entities.CommandeClient;
+import static com.miage.ServiceCommacial2.entities.CommandeClient.statutDebutCommande;
+import static com.miage.ServiceCommacial2.entities.CommandeClient_.statut;
 import com.miage.ServiceCommacial2.entities.Commercial;
 import java.util.Calendar;
 import javax.ejb.Stateless;
@@ -33,10 +35,11 @@ public class CommandeClientFacade extends AbstractFacade<CommandeClient> impleme
     
     
     @Override
-    public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, String IDVRDV, Commercial commercial) {
-        CommandeClient nouvelleCommande = new CommandeClient(ReferenceCatalogue, CoteExact, CommandeClient.statutDebutCommande, tarif, commercial);
+    public void creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) {
+        CommandeClient nouvelleCommande = new CommandeClient(ReferenceCatalogue, CoteExact, tarif, commercial,CommandeClient.statutDebutCommande);
         this.create(nouvelleCommande);
-        return nouvelleCommande;
+        
+     
     }
 
     @Override

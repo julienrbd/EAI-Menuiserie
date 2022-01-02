@@ -27,25 +27,28 @@ public class Commercial implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-       @Column(name="Name", nullable = false)
+     
     private String Name;
 
-    @Column(name="FirstName", nullable = false)
+ 
     private String FirstName;
     
             
-    @OneToMany
+    @OneToMany 
     private List<Creneau> Creneau;
     
+     public Commercial(){
+        
+    }
+
   
     public Commercial(String name, String firstname){
-      
+
         this.Name = name;
         this.FirstName = firstname;
         
-      
     }
-
+   
  
     public Long getId() {
         return id;

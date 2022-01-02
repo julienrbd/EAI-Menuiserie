@@ -8,7 +8,9 @@ package com.miage.ServiceCommercial2.metier;
 import com.miage.ServiceCommacial2.entities.CommandeClient;
 import static com.miage.ServiceCommacial2.entities.CommandeClient.statutCommandeValidé;
 import static com.miage.ServiceCommacial2.entities.CommandeClient.statutDebutCommande;
+import com.miage.ServiceCommacial2.entities.Commercial;
 import com.miage.servicesCommercial2.facacde.CommandeClientFacadeLocal;
+import com.miage.servicesCommercial2.facacde.CommercialFacadeLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -19,14 +21,25 @@ import javax.ejb.Stateless;
 @Stateless
 public class GestionCommandeClient implements GestionCommandeClientLocal {
 
-     @EJB
-    private CommandeClientFacadeLocal CommandeClient;
+  
+
+    @EJB
+    private CommandeClientFacadeLocal commandeClientFacade;
+
+  
+  
+       @Override
+    public void creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) {
+        this.commandeClientFacade.creerCommande(ReferenceCatalogue, CoteExact, tarif, commercial);
+        commandeClientFacade.setStatut(statutDebutCommande);
+     
+    }
+    
        @Override
     public void ValiderCommande(Long idCommande)  {
-        final CommandeClient commande = this.CommandeClient.find(idCommande);
+        final CommandeClient commande = this.commandeClientFacade.find(idCommande);
      
-         CommandeClient.setStatut(statutCommandeValidé);
-    
+         commande.setStatut(statutCommandeValidé);
     
     }
     // Add business logic below. (Right-click in editor and choose

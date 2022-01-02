@@ -29,6 +29,6 @@ public interface CommercialFacadeLocal {
     List<Commercial> findRange(int[] range);
 
     int count();
-    public Commercial findByPrenomAndNom(String Name, String FirstName);
+   ;
     
 }
