@@ -145,7 +145,7 @@ public class Producer {
             for (int i = 0; i < count; ++i) {
                 ObjectMessage message = session.createObjectMessage();
                 message.setObject((Serializable) affaire);
-                message.setJMSType("creerAffaire");
+                message.setJMSType("CreerAffaire");
                 message.setLongProperty("id", idClient);
 
                 sender.send(message);
@@ -307,16 +307,26 @@ public class Producer {
 
                 // boucle de production
                 TextMessage MsgGetDispoCom = session.createTextMessage();
-                MsgGetDispoCom.setText("getClient");
+                MsgGetDispoCom.setJMSType("GetDispo");
+                MsgGetDispoCom.setText("getDispoCommerciaux");
+                MsgGetDispoCom.setLongProperty("dateDebut", dateDebut.getTimeInMillis());
+                MsgGetDispoCom.setLongProperty("dateFin", dateFin.getTimeInMillis());
                 MsgGetDispoCom.setJMSReplyTo(tmpQueue);
                 sender.send(MsgGetDispoCom);
                 System.out.println("[CA] Sent: " + MsgGetDispoCom.getText());
 
                 // Wait for response
-                for (int cpt = 0; cpt < 5; cpt++) {
+                Calendar dateD = Calendar.getInstance();
+                Calendar dateF = Calendar.getInstance();
+                
+                for (int cpt = 0; cpt < 28; cpt++) {
                     Message reply = consumer.receive();
                     TextMessage tm = (TextMessage) reply;
-                    System.out.println("[CA] Got reply: " + tm.getLongProperty("id") + tm.getStringProperty("nom") + tm.getStringProperty("prenom"));
+                    dateD.setTimeInMillis(tm.getLongProperty("dateDebut"));
+                    dateF.setTimeInMillis(tm.getLongProperty("dateFin"));
+                    System.out.println("[CA] Got reply: Commercial : " + tm.getLongProperty("idCommercial") + tm.getStringProperty("nom") + tm.getStringProperty("prenom"));
+                    System.out.println("[CA] Got reply: Creneau : " + tm.getLongProperty("idCreneau") + dateD.toString() + dateF.toString());
+
                 }
                 Message reply = consumer.receive();
                 TextMessage tm = (TextMessage) reply;
@@ -416,8 +426,8 @@ public class Producer {
         }
         //ConfirmationRdv(idAffaire, idCommercial, idCreneau);
     }
-    
-    public static void ConfirmationRdv(Long idAffaire, Long idCommercial, Long idCreneau){
+
+    public static void ConfirmationRdv(Long idAffaire, Long idCommercial, Long idCreneau) {
         Context context = null;
         ConnectionFactory factory = null;
         Connection connection = null;
@@ -512,11 +522,12 @@ public class Producer {
         creerAffaire(affaire, (long) 1);
         Calendar date1 = Calendar.getInstance();
         Calendar date2 = Calendar.getInstance();
-        //getDispo(date1, date2);
-        
+        date2.set(Calendar.DAY_OF_MONTH, date1.get(Calendar.DAY_OF_MONTH)+7 );
+        getDispo(date1, date2);
+
         long idCommercial = (long) 1;
         long idCreneau = (long) 1;
-        
+
         creerRdvCommercial((long) 1, idCommercial, idCreneau);
     }
 

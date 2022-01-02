@@ -18,5 +18,8 @@ import javax.ejb.Local;
  */
 @Local
 public interface GestionCreneauLocal {
-     public Map<Long,List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin);
+
+    
+    public Map<Long, List<Creneau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin);
+
 }

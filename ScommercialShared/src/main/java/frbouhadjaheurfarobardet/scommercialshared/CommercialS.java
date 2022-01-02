@@ -3,29 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miage.ServiceCommacial2.entities;
+package frbouhadjaheurfarobardet.scommercialshared;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author AlaaCheurfa
  */
-@Entity
-public class Commercial implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CommercialS implements Serializable {
     private Long id;
 
      
@@ -34,11 +22,17 @@ public class Commercial implements Serializable {
  
     private String FirstName;
     
-            
-    @OneToMany 
-    private List<Creneau> Creneau;
+    private List<CreneauS> Creneau;
     
-     public Commercial(){
+     public CommercialS(){
+        
+    }
+
+  
+    public CommercialS(String name, String firstname){
+
+        this.Name = name;
+        this.FirstName = firstname;
         
     }
 
@@ -58,14 +52,12 @@ public class Commercial implements Serializable {
         this.FirstName = FirstName;
     }
 
-  
-    public Commercial(String name, String firstname){
+    public List<CreneauS> getCreneau() {
+        return Creneau;
+    }
 
-        this.Name = name;
-        this.FirstName = firstname;
-        this.Creneau = new ArrayList<>();
-        
-        
+    public void setCreneau(List<CreneauS> Creneau) {
+        this.Creneau = Creneau;
     }
    
  
@@ -78,13 +70,7 @@ public class Commercial implements Serializable {
     }
     
     
-    public List<Creneau> getCreneau() {
-        return Creneau;
-    }
-
-    public void setVoyages(List<Creneau> Creneau) {
-        this.Creneau = Creneau;
-    }
+    
 
 
     @Override
@@ -97,10 +83,10 @@ public class Commercial implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Commercial)) {
+        if (!(object instanceof CommercialS)) {
             return false;
         }
-        Commercial other = (Commercial) object;
+        CommercialS other = (CommercialS) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,8 +95,7 @@ public class Commercial implements Serializable {
 
     @Override
     public String toString() {
-        return "com.miage.ServiceCommacial2.entities.Commercial[ id=" + id + " ], nom = " +Name;
+        return "com.miage.ServiceCommacial2.entities.Commercial[ id=" + id + " ]";
     }
-    
     
 }

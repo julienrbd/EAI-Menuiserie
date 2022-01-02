@@ -29,6 +29,8 @@ public interface CommercialFacadeLocal {
     List<Commercial> findRange(int[] range);
 
     int count();
+    
+    void create(String name, String firstName)
    ;
     
 }

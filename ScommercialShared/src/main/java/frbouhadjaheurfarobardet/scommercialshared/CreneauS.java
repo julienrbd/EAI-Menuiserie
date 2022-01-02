@@ -3,48 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miage.ServiceCommacial2.entities;
+package frbouhadjaheurfarobardet.scommercialshared;
 
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
  * @author AlaaCheurfa
  */
-@Entity
-public class Creneau implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CreneauS implements Serializable {
     private Long id;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Calendar dateDebut;
-
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    
     private Calendar dateFin;
 
-    public Creneau() {
-    }
-
-    public Creneau(Calendar dateD, Calendar dateF) {
-        this.dateDebut = dateD;
-        this.dateFin = dateF;
+    public CreneauS() {
     }
 
     public Calendar getDateDebut() {
@@ -63,7 +40,7 @@ public class Creneau implements Serializable {
         this.dateFin = dateFin;
     }
 
-    public Creneau(Long id, Calendar dateDebut, Calendar dateFin) {
+    public CreneauS(Long id, Calendar dateDebut, Calendar dateFin) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
@@ -87,10 +64,10 @@ public class Creneau implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Creneau)) {
+        if (!(object instanceof CreneauS)) {
             return false;
         }
-        Creneau other = (Creneau) object;
+        CreneauS other = (CreneauS) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -101,5 +78,5 @@ public class Creneau implements Serializable {
     public String toString() {
         return "frbouhadjacheurfarobardet.entities.Creneau[ id=" + id + " ]";
     }
-
+    
 }
