@@ -20,8 +20,10 @@ public class MetierClient implements MetierClientLocal {
 
     @EJB
     private ClientFacadeLocal clientFacade;
-    
 
+    public MetierClient() {
+    }
+    
     @Override
     public void CreerClient(String nom, String prenom, String adresse, String mail, String tel, String geolocalisation) {
         this.clientFacade.CreerClient(nom,prenom,adresse,mail,tel,geolocalisation);

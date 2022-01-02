@@ -32,7 +32,7 @@ public class RdvCommercial implements Serializable {
     
     private Long idCommercial;
     
-    @OneToOne
+    @OneToOne(mappedBy = "rdvCommercial")
     private Affaire affaire;
 
     public RdvCommercial() {

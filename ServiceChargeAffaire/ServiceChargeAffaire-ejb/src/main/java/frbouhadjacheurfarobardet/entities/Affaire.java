@@ -39,6 +39,12 @@ public class Affaire implements Serializable {
     private Long idCommande;
     @ManyToOne
     private Client client;
+    
+    @OneToOne
+    private RdvCommercial rdvCommercial;
+    
+    @OneToOne
+    private RdvPoseur rdvPoseur;
 
     public List<String> getAdresses() {
         return adresses;
