@@ -59,6 +59,22 @@ public class Affaire implements Serializable {
         this.rdvPoseur = rdvPoseur;
     }
 
+    public RdvCommercial getRdvCommercial() {
+        return rdvCommercial;
+    }
+
+    public void setRdvCommercial(RdvCommercial rdvCommercial) {
+        this.rdvCommercial = rdvCommercial;
+    }
+
+    public RdvPoseur getRdvPoseur() {
+        return rdvPoseur;
+    }
+
+    public void setRdvPoseur(RdvPoseur rdvPoseur) {
+        this.rdvPoseur = rdvPoseur;
+    }
+
     public List<String> getAdresses() {
         return adresses;
     }
