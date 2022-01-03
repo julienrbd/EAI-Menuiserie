@@ -35,17 +35,15 @@ public class CommandeClientFacade extends AbstractFacade<CommandeClient> impleme
     
     
     @Override
-    public void creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) {
-        CommandeClient nouvelleCommande = new CommandeClient(ReferenceCatalogue, CoteExact, tarif, commercial,CommandeClient.statutDebutCommande);
+    public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial) {
+        CommandeClient nouvelleCommande = new CommandeClient(ReferenceCatalogue, CoteExact, Tarif,commercial);
+        nouvelleCommande.setStatut(statutDebutCommande);
         this.create(nouvelleCommande);
+        
+        return nouvelleCommande;
+        
         
      
     }
 
-    @Override
-    public void setStatut(String statutDebutCommande) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }

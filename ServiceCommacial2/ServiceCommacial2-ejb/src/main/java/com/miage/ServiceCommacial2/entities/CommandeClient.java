@@ -27,8 +27,8 @@ public class CommandeClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
-    private int idc;
+   
+ 
    
     private String ReferenceCatalogue;
 
@@ -55,12 +55,14 @@ public class CommandeClient implements Serializable {
     }
  
     
-public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial,String statut){
+public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial){
         this.ReferenceCatalogue = ReferenceCatalogue;
         this.CoteExact = CoteExact;
         this.Tarif = Tarif;
-        this.commercial=commercial;
-        this.statut=statut;
+    
+      
+     this.commercial=commercial;
+     
     
         
               

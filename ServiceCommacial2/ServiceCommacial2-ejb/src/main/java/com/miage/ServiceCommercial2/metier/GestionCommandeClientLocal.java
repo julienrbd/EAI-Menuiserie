@@ -16,7 +16,7 @@ import javax.ejb.Local;
 @Local
 public interface GestionCommandeClientLocal {
     
-      public void  creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial);
-      public void ValiderCommande(Long idCommande);
+     
+     
     
 }

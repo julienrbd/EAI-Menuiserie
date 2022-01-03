@@ -21,7 +21,7 @@ public interface CommandeClientFacadeLocal {
 
     void create(CommandeClient commandeClient);
     
-    public void  creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) ;
+    public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial) ;
 
     void edit(CommandeClient commandeClient);
 
@@ -35,6 +35,6 @@ public interface CommandeClientFacadeLocal {
 
     int count();
 
-    public void setStatut(String statutDebutCommande);
+   
     
 }

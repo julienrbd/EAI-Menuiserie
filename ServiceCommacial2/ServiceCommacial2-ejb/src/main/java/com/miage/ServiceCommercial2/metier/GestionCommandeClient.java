@@ -28,20 +28,9 @@ public class GestionCommandeClient implements GestionCommandeClientLocal {
 
   
   
-       @Override
-    public void creerCommande(String ReferenceCatalogue, String CoteExact, String tarif, Commercial commercial) {
-        this.commandeClientFacade.creerCommande(ReferenceCatalogue, CoteExact, tarif, commercial);
-        commandeClientFacade.setStatut(statutDebutCommande);
-     
-    }
+   
     
-       @Override
-    public void ValiderCommande(Long idCommande)  {
-        final CommandeClient commande = this.commandeClientFacade.find(idCommande);
-     
-         commande.setStatut(statutCommandeValidé);
-    
-    }
+   
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
 }
