@@ -47,7 +47,6 @@ public class GestionCreneau implements GestionCreneauLocal {
             for (Creneau creneau : ListCreneau) {
                 if (creneau.getDateDebut().after(DateDebut) && (creneau.getDateFin().before(DateFin))) {
                     ListCreneauValide.add(creneau);
-
                 }
             }
             listeDisponibilite.put(commercial.getId(), ListCreneauValide);

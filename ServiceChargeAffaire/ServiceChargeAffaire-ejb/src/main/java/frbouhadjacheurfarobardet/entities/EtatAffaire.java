@@ -10,5 +10,5 @@ package frbouhadjacheurfarobardet.entities;
  * @author JulienRobardet
  */
 public enum EtatAffaire {
-    CREE, COMMMANDE, LIVRE, POSE, CLOTURE
+    CREE, VALIDEE, COMMMANDE, LIVRE, POSE, CLOTURE
 }

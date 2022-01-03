@@ -6,6 +6,7 @@
 package com.miage.ServiceCommacial2.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.Column;
@@ -41,11 +42,29 @@ public class Commercial implements Serializable {
         
     }
 
+    public String getName() {
+        return Name;
+    }
+
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    public String getFirstName() {
+        return FirstName;
+    }
+
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
+    }
+
   
     public Commercial(String name, String firstname){
 
         this.Name = name;
         this.FirstName = firstname;
+        this.Creneau = new ArrayList<>();
+        
         
     }
    
@@ -90,7 +109,8 @@ public class Commercial implements Serializable {
 
     @Override
     public String toString() {
-        return "com.miage.ServiceCommacial2.entities.Commercial[ id=" + id + " ]";
+        return "com.miage.ServiceCommacial2.entities.Commercial[ id=" + id + " ], nom = " +Name;
     }
+    
     
 }

@@ -33,13 +33,18 @@ public class Creneau implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Calendar dateDebut;
-    
-    @Temporal(javax.persistence.TemporalType.DATE)
+
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Calendar dateFin;
 
     public Creneau() {
+    }
+
+    public Creneau(Calendar dateD, Calendar dateF) {
+        this.dateDebut = dateD;
+        this.dateFin = dateF;
     }
 
     public Calendar getDateDebut() {
@@ -96,5 +101,5 @@ public class Creneau implements Serializable {
     public String toString() {
         return "frbouhadjacheurfarobardet.entities.Creneau[ id=" + id + " ]";
     }
-    
+
 }
