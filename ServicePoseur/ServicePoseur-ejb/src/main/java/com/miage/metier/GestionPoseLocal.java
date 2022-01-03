@@ -5,6 +5,11 @@
  */
 package com.miage.metier;
 
+import com.miage.entities.Crenau;
+import com.miage.entities.Poseur;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
 import javax.ejb.Local;
 
 /**
@@ -14,6 +19,8 @@ import javax.ejb.Local;
 @Local
 public interface GestionPoseLocal {
         
-        public void validerPose (String idAffaire);
-        public String AffairePoseur (String idAffaire );
+         public Poseur validerPose(String idPoseur);
+        public Map<Long, List<Crenau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin);
+        
+        
 }
