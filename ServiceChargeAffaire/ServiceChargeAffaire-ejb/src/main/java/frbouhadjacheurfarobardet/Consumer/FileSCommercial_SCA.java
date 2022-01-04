@@ -37,17 +37,16 @@ public class FileSCommercial_SCA implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            if(message.getJMSType().equals("CreerRdvClient")){
+            if(message.getJMSType().equals("CreerCommandeClient")){
                 long idAffaire = message.getLongProperty("idAffaire");
                 long idCommande = message.getLongProperty("idCommande");
                 Affaire affaire = affaireFacade.find(idAffaire);
                 affaire.setIdCommande(idCommande);
                 affaire.setEtat(EtatAffaire.VALIDEE);
                 affaireFacade.edit(affaire);
-            }   
+            }
         } catch (JMSException ex) {
             Logger.getLogger(FileSCommercial_SCA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

@@ -22,7 +22,7 @@ public class CommandeFournisseur implements Serializable {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
-        private CommandeClient commandeClient;
+        private long idCommandeClient;
 
         public Long getId() {
                 return id;
