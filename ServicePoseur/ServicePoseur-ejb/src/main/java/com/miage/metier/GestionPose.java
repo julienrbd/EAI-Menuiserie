@@ -22,7 +22,6 @@ public class GestionPose implements GestionPoseLocal {
                PoseurFacadeLocal pose = (PoseurFacadeLocal) this.pose.find(idAffaire);
                
                pose.setStatut(poseV);
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
         
 
