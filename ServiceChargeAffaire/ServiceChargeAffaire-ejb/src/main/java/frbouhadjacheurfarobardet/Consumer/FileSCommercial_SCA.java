@@ -49,5 +49,4 @@ public class FileSCommercial_SCA implements MessageListener {
             Logger.getLogger(FileSCommercial_SCA.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }

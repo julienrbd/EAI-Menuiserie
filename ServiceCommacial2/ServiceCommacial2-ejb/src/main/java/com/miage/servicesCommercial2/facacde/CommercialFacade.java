@@ -63,7 +63,7 @@ public class CommercialFacade extends AbstractFacade<Commercial> implements Comm
                 listeC.add(creneau);
             }
         }
-        c.setVoyages(listeC);
+        c.setCreneau(listeC);
         this.create(c);
 
     }

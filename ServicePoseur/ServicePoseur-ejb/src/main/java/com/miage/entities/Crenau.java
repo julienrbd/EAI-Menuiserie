@@ -24,33 +24,41 @@ public class Crenau implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Calendar debut;
+    private Calendar dateDebut;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Calendar fin;
+    private Calendar dateFin;
 
     public Crenau() {
     }
 
-    public Crenau(Calendar debut, Calendar fin) {
-        this.debut = debut;
-        this.fin = fin;
+    public Crenau(Calendar dateD, Calendar dateF) {
+        this.dateDebut = dateD;
+        this.dateFin = dateF;
     }
 
-    public Calendar getDebut() {
-        return debut;
+    public Calendar getDateDebut() {
+        return dateDebut;
     }
 
-    public void setDebut(Calendar debut) {
-        this.debut = debut;
+    public void setDateDebut(Calendar dateDebut) {
+        this.dateDebut = dateDebut;
     }
 
-    public Calendar getFin() {
-        return fin;
+    public Calendar getDateFin() {
+        return dateFin;
     }
 
-    public void setFin(Calendar fin) {
-        this.fin = fin;
+    public void setDateFin(Calendar dateFin) {
+        this.dateFin = dateFin;
+    }
+
+    public Crenau(Long id, Calendar dateDebut, Calendar dateFin) {
+        this.id = id;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
     }
 
     public Long getId() {
@@ -83,7 +91,7 @@ public class Crenau implements Serializable {
 
     @Override
     public String toString() {
-        return "com.miage.Facade.entities.Crenau[ id=" + id + " ]";
+        return "frbouhadjacheurfarobardet.entities.Creneau[ id=" + id + " ]";
     }
 
 }

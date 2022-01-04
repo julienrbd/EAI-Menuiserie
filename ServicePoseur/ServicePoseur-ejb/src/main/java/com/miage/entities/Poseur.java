@@ -6,6 +6,7 @@
 package com.miage.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,17 +27,33 @@ public class Poseur implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
+    private String statut;
+    
+    
     @OneToMany
     private List<Crenau> Creneau;
+    
+    
+
+    
+        public String getStatut() {
+        return statut;
+    }
+
+    public void setStatut(String statut) {
+        this.statut = statut;
+    }
+    
 
     public List<Crenau> getCreneau() {
         return Creneau;
     }
-
-    public void setCreneau(List<Crenau> Creneau) {
+    
+      public void setCreneau(List<Crenau> Creneau) {
         this.Creneau = Creneau;
     }
 
+     
     public String getNom() {
         return nom;
     }
@@ -63,10 +80,12 @@ public class Poseur implements Serializable {
 
     public Poseur() {
     }
+    public static final String statutPoseurValidé = "Pose validée !!!!";
 
     public Poseur(String nom, String prenom) {
         this.nom = nom;
         this.prenom = prenom;
+        this.Creneau = new ArrayList<>();
     }
 
     @Override
