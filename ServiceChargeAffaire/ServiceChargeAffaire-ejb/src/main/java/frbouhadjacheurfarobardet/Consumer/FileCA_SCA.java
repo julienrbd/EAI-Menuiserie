@@ -17,6 +17,10 @@ import frbouhadjacheurfarobardet.entities.RdvPoseur;
 import frbouhadjacheurfarobardet.facade.AffaireFacadeLocal;
 import frbouhadjacheurfarobardet.facade.ClientFacadeLocal;
 import frbouhadjacheurfarobardet.facade.RdvCommercialFacadeLocal;
+import frbouhadjacheurfarobardet.facade.RdvPoseurFacadeLocal;
+import frbouhadjaheurfarobardet.scashared.EtatAffaireS;
+import frbouhadjaheurfarobardet.scashared.RdvCommercialS;
+import frbouhadjaheurfarobardet.scashared.RdvPoseurS;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +55,14 @@ import javax.naming.NamingException;
 public class FileCA_SCA implements MessageListener {
 
     @EJB
+    private RdvPoseurFacadeLocal rdvPoseurFacade;
+
+    @EJB
     private RdvCommercialFacadeLocal rdvCommercialFacade;
 
     @EJB
     private ClientFacadeLocal clientFacade;
-    
+
     @EJB
     private AffaireFacadeLocal affaireFacade;
 
@@ -84,66 +91,95 @@ public class FileCA_SCA implements MessageListener {
                     System.out.println(nom + prenom + adresse + mail + tel + geolocalisation);
                     this.metierClient.CreerClient(nom, prenom, adresse, mail, tel, geolocalisation);
 
-                } else if ("CreerAffaire".equals(message.getJMSType())){
+                } else if ("CreerAffaire".equals(message.getJMSType())) {
                     AffaireS affaireS = (AffaireS) ((ObjectMessage) message).getObject();
                     Client client = clientFacade.find(message.getLongProperty("id"));
                     this.metierAffaire.creerAffaire(client, affaireS.getAdresses(), affaireS.getGeolocalisation());
                     System.out.println(client.toString());
-                }else if ("CreerRdvCommercial".equals(message.getJMSType())){
+                } else if ("CreerRdvCommercial".equals(message.getJMSType())) {
                     Affaire affaire = affaireFacade.find(message.getLongProperty("idAffaire"));
                     rdvCommercialFacade.creerRdvCommercial(affaire, message.getLongProperty("idCreneau"), message.getLongProperty("idCommercial"));
+                } else if (message.getJMSType().equals("CreerRdvPoseur")) {
+                    Affaire affaire = affaireFacade.find(message.getLongProperty("idAffaire"));
+                    rdvPoseurFacade.creerRdvPose(affaire, message.getLongProperty("idCreneau"), message.getLongProperty("idPoseur"));
                 }
+            } else if (message instanceof TextMessage) {
+                if ("getCommandeLivre".equals(message.getJMSType())) {
+                    Context context = new InitialContext();
 
-            } else {
+                    // look up the ConnectionFactory
+                    ConnectionFactory factory = null;
+                    Connection connection = null;
+                    String factoryName = "MenuiserieConnectionFactory";
+                    Destination dest = null;
+                    int count = 1;
+                    Session session = null;
+                    MessageProducer sender = null;
+                    factory = (ConnectionFactory) context.lookup(factoryName);
 
-                Context context = new InitialContext();
+                    // create the connection
+                    connection = factory.createConnection();
 
-                // look up the ConnectionFactory
-                ConnectionFactory factory = null;
-                Connection connection = null;
-                String factoryName = "MenuiserieConnectionFactory";
-                Destination dest = null;
-                int count = 1;
-                Session session = null;
-                MessageProducer sender = null;
-                factory = (ConnectionFactory) context.lookup(factoryName);
+                    // create the session
+                    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 
-                // create the connection
-                connection = factory.createConnection();
+                    // start the connection, to enable message sending
+                    connection.start();
 
-                // create the session
-                session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+                    List<AffaireS> listeAffaire = new ArrayList<>();
 
-                // start the connection, to enable message sending
-                connection.start();
+                    for (Affaire a : this.affaireFacade.findAll()) {
+                        if (a.getEtat() == EtatAffaire.LIVRE) {
+                            listeAffaire.add(new AffaireS(a.getId(), a.getGeolocalisation(), a.getAdresses(), a.getIdCommande()));
+                        }
+                    }
+                    MessageProducer producer = session.createProducer(null);
+                    int cpt = 0;
+                    while ((cpt < 3) && (message.getJMSReplyTo() != null)) {
+                        AffaireS a = listeAffaire.get(cpt);
+                        ObjectMessage reply = session.createObjectMessage();
+                        reply.setObject((Serializable) a);
+                        producer.send(message.getJMSReplyTo(), reply);
+                        System.out.println("Sent [SCA} : " + a.toString());
+                        cpt++;
+                    }
+                } else {
+                    Context context = new InitialContext();
 
-                MessageProducer producer = session.createProducer(null);
-                List<Client> listeClient = this.clientFacade.findAll();
-                int cpt = 0;
-                while (( cpt< 5)&&(message.getJMSReplyTo()!=null)){
-                    Client c = listeClient.get(cpt);
-                    TextMessage reply = session.createTextMessage();
-                    reply.setLongProperty("id", c.getId());
-                    reply.setStringProperty("nom", c.getNom());
-                    reply.setStringProperty("prenom", c.getPrenom());
-                    producer.send(message.getJMSReplyTo(), reply);
-                    cpt++;
+                    // look up the ConnectionFactory
+                    ConnectionFactory factory = null;
+                    Connection connection = null;
+                    String factoryName = "MenuiserieConnectionFactory";
+                    Destination dest = null;
+                    int count = 1;
+                    Session session = null;
+                    MessageProducer sender = null;
+                    factory = (ConnectionFactory) context.lookup(factoryName);
+
+                    // create the connection
+                    connection = factory.createConnection();
+
+                    // create the session
+                    session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
+                    // start the connection, to enable message sending
+                    connection.start();
+
+                    MessageProducer producer = session.createProducer(null);
+
+                    List<Client> listeClient = this.clientFacade.findAll();
+                    int cpt = 0;
+                    while ((cpt < 5) && (message.getJMSReplyTo() != null)) {
+                        Client c = listeClient.get(cpt);
+                        TextMessage reply = session.createTextMessage();
+                        reply.setLongProperty("id", c.getId());
+                        reply.setStringProperty("nom", c.getNom());
+                        reply.setStringProperty("prenom", c.getPrenom());
+                        producer.send(message.getJMSReplyTo(), reply);
+                        cpt++;
+                    }
                 }
-                //ObjectMessage reply = session.createObjectMessage((Serializable) client);
-                //reply.setJMSCorrelationID(m.getJMSMessageID());   // link messages (more)
-                
             }
-            /*
-                ObjectMessage reply = s.createObjectMessage((Serializable) rep);
-            reply.setJMSCorrelationID(m.getJMSMessageID());   // link messages (more)
-            p.send(m.getJMSReplyTo(), reply);
-             */
-            //TextMessage message2 = new;
-            //message2.setJMSReplyTo(message.getJMSReplyTo());
-            //message2.send();
-            // else if (message instanceof ObjectMessage) {
-            // System.out.println("Received non text message");
-            // }
         } catch (JMSException ex) {
             Logger.getLogger(FileCA_SCA.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NamingException ex) {

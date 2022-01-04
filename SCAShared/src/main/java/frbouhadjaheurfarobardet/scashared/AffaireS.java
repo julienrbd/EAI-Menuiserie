@@ -27,7 +27,7 @@ public class AffaireS implements Serializable {
     private Boolean encaissement2;
 
     private Long idCommande;
-    
+
     private ClientS client;
 
     private RdvCommercialS rdvCommercial;
@@ -55,6 +55,26 @@ public class AffaireS implements Serializable {
         this.encaissement2 = encaissement2;
         this.idCommande = idCommande;
         this.client = client;
+    }
+
+    public AffaireS(Long id, EtatAffaireS etat, String geolocalisation, List<String> adresses, Boolean encaissement1, Boolean encaissement2, Long idCommande, ClientS client, RdvCommercialS rdvCommercial, RdvPoseurS rdvPoseur) {
+        this.id = id;
+        this.etat = etat;
+        this.geolocalisation = geolocalisation;
+        this.adresses = adresses;
+        this.encaissement1 = encaissement1;
+        this.encaissement2 = encaissement2;
+        this.idCommande = idCommande;
+        this.client = client;
+        this.rdvCommercial = rdvCommercial;
+        this.rdvPoseur = rdvPoseur;
+    }
+
+    public AffaireS(Long id, String geolocalisation, List<String> adresses, Long idCommande) {
+        this.id = id;
+        this.geolocalisation = geolocalisation;
+        this.adresses = adresses;
+        this.idCommande = idCommande;
     }
 
     public Long getId() {
@@ -88,7 +108,6 @@ public class AffaireS implements Serializable {
     public void setRdvPoseur(RdvPoseurS rdvPoseur) {
         this.rdvPoseur = rdvPoseur;
     }
-    
 
     public String getGeolocalisation() {
         return geolocalisation;

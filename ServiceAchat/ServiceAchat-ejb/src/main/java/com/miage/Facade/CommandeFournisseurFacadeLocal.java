@@ -3,30 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miage.Entities;
+package com.miage.Facade;
 
+import com.miage.Entities.CommandeFournisseur;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author Mohamed-AmineBouhadj
+ * @author jroba
  */
 @Local
 public interface CommandeFournisseurFacadeLocal {
 
-        void create(CommandeFournisseur commandeFournisseur);
+    void create(CommandeFournisseur commandeFournisseur);
 
-        void edit(CommandeFournisseur commandeFournisseur);
+    void edit(CommandeFournisseur commandeFournisseur);
 
-        void remove(CommandeFournisseur commandeFournisseur);
+    void remove(CommandeFournisseur commandeFournisseur);
 
-        CommandeFournisseur find(Object id);
+    CommandeFournisseur find(Object id);
 
-        List<CommandeFournisseur> findAll();
+    List<CommandeFournisseur> findAll();
 
-        List<CommandeFournisseur> findRange(int[] range);
+    List<CommandeFournisseur> findRange(int[] range);
 
-        int count();
-        
+    int count();
+    
 }

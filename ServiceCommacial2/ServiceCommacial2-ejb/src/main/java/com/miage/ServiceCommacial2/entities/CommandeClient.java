@@ -27,78 +27,82 @@ public class CommandeClient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-   
- 
-   
+
     private String ReferenceCatalogue;
 
-    
     private String CoteExact;
-    
-  
+
     private String Tarif;
 
- 
-    
-      @OneToOne
+    @OneToOne
     private Commercial commercial;
-      
-        
+
     private String statut;
-    
-    
-       public static final String statutDebutCommande = "Commande en cours";
+
+    public static final String statutDebutCommande = "Commande en cours";
     public static final String statutCommandeValidé = "Commande Validé";
-    
-    public CommandeClient(){
-        
+
+    public CommandeClient() {
+
     }
- 
-    
-public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial){
+
+    public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif, Commercial commercial) {
         this.ReferenceCatalogue = ReferenceCatalogue;
         this.CoteExact = CoteExact;
         this.Tarif = Tarif;
-    
-      
-     this.commercial=commercial;
-     
-    
-        
-              
+
+        this.commercial = commercial;
+
     }
 
- public String getReferenceCatalogue() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Commercial getCommercial() {
+        return commercial;
+    }
+
+    public void setCommercial(Commercial commercial) {
+        this.commercial = commercial;
+    }
+
+    public String getReferenceCatalogue() {
         return ReferenceCatalogue;
     }
 
     public void setReferenceCatalogue(String getReferenceCatalogue) {
         this.ReferenceCatalogue = ReferenceCatalogue;
     }
-    
-     public String getCoteExact() {
+
+    public String getCoteExact() {
         return CoteExact;
     }
 
     public void setCoteExact(String CoteExact) {
         this.CoteExact = CoteExact;
     }
-     public String getTarif() {
+
+    public String getTarif() {
         return Tarif;
     }
 
     public void setTarif(String Tarif) {
         this.Tarif = Tarif;
     }
-    
-      public String getStatut() {
+
+    public String getStatut() {
         return statut;
     }
 
     public void setStatut(String statut) {
         this.statut = statut;
     }
- 
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,5 +127,5 @@ public CommandeClient(String ReferenceCatalogue, String CoteExact, String Tarif,
     public String toString() {
         return "com.miage.ServiceCommacial2.CommandeClient[ id=" + id + " ]";
     }
-    
+
 }

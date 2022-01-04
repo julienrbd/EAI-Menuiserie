@@ -101,12 +101,12 @@ public class CommercialResource {
     @Path("/creerCommande")
     @Produces(MediaType.APPLICATION_JSON)
     public Response creerCommande(@QueryParam("ReferenceCatalogue") String ReferenceCatalogue, @QueryParam("CoteExact") String CoteExact,
-            @QueryParam("Tarif") String Tarif, @QueryParam("idCommercial") long idCommercial) {
+            @QueryParam("Tarif") String Tarif, @QueryParam("idCommercial") long idCommercial, @QueryParam("idAffaire") long idAffaire) {
         Commercial co = serviceCom.findIdCom(idCommercial);
         if (co == null) {
             return Response.created(context.getAbsolutePath()).status(Response.Status.INTERNAL_SERVER_ERROR).entity(null).build();
         } else {
-            CommandeClient c = serviceCom.creerCommande(ReferenceCatalogue, CoteExact, Tarif, co);
+            CommandeClient c = serviceCom.creerCommande(ReferenceCatalogue, CoteExact, Tarif, co, idAffaire);
             if (c == null) {
                 return Response.created(context.getAbsolutePath()).status(Response.Status.INTERNAL_SERVER_ERROR).entity(null).build();
             } else {

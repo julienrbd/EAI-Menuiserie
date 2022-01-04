@@ -17,7 +17,7 @@ import javax.persistence.metamodel.SingularAttribute;
  */
 @Local
 public interface ServiceComLocal {
-   public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial);
+   public CommandeClient creerCommande(String ReferenceCatalogue, String CoteExact, String Tarif,Commercial commercial, Long idAffaire);
       public List<CommandeClient> findAllComande() ;
       public CommandeClient ValiderCommande(Long idCommande);
        public Commercial findIdCom(Long idCommmercial);

@@ -3,32 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miage.Entities;
+package com.miage.Facade;
 
-import javax.ejb.Stateless;
+import com.miage.Entities.CommandeFournisseur;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
-
-
 /**
  *
- * @author Mohamed-AmineBouhadj
+ * @author jroba
  */
-@Stateless
-public class CommandeFournisseurFacade extends AbstractFacade<CommandeFournisseur> implements CommandeFournisseurFacadeLocal {
+public class CommandeFournisseurFacade extends AbstractFacade<CommandeFournisseur> implements CommandeFournisseurFacadeLocal{
 
-        @PersistenceContext(unitName = "com.miage_ServiceAchat-ejb_ejb_1.0PU")
-        private EntityManager em;
+    @PersistenceContext(unitName = "com.miage_ServiceAchat-ejb_ejb_1.0PU")
+    private EntityManager em;
 
-        @Override
-        protected EntityManager getEntityManager() {
-                return em;
-        }
+    public CommandeFournisseurFacade(Class<CommandeFournisseur> entityClass) {
+        super(entityClass);
+    }
 
-        public CommandeFournisseurFacade() {
-                super(CommandeFournisseur.class);
-        }
-        
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+    
 }

@@ -10,9 +10,6 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-
-
-
 /**
  *
  * @author Mohamed-AmineBouhadj
@@ -20,21 +17,24 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class PoseurFacade extends AbstractFacade<Poseur> implements PoseurFacadeLocal {
 
-        @PersistenceContext(unitName = "com.miage_ServicePoseur-ejb_ejb_1.0PU")
-        private EntityManager em;
+    @PersistenceContext(unitName = "com.miage_ServicePoseur-ejb_ejb_1.0PU")
+    private EntityManager em;
 
-        @Override
-        protected EntityManager getEntityManager() {
-                return em;
-        }
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
 
-        public PoseurFacade() {
-                super(Poseur.class);
-        }
+    public PoseurFacade() {
+        super(Poseur.class);
+    }
 
-        @Override
-        public void setStatut(String poseV) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
+    @Override
+    public void create(String nom, String prenom) {
         
+        Poseur p = new Poseur(nom, prenom);
+        this.create(p);
+
+    }
+
 }

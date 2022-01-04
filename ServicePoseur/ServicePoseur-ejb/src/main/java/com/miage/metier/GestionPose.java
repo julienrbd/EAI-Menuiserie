@@ -28,21 +28,17 @@ public class GestionPose implements GestionPoseLocal {
     @EJB
     private PoseurFacadeLocal poseurFacade;
 
-    
-        @Override
-        public Poseur validerPose(String idPoseur) {
-            final Poseur pose = this.poseurFacade.find(idPoseur);
-            pose.setStatut(statutPoseurValidé);
-            return pose;
-            
-               //To change body of generated methods, choose Tools | Templates.
-        }
-        
+    @Override
+    public Poseur validerPose(String idPoseur) {
+        final Poseur pose = this.poseurFacade.find(idPoseur);
+        pose.setStatut(statutPoseurValidé);
+        return pose;
 
-        // Add business logic below. (Right-click in editor and choose
-        // "Insert Code > Add Business Method")
+    }
 
-         @Override
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    @Override
     public Map<Long, List<Crenau>> InterrogerDisponibilite(Calendar DateDebut, Calendar DateFin) {
 
         Map<Long, List<Crenau>> listeDisponibilite = new HashMap<Long, List<Crenau>>();

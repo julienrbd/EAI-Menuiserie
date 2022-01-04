@@ -82,7 +82,7 @@ public class Commercial implements Serializable {
         return Creneau;
     }
 
-    public void setVoyages(List<Creneau> Creneau) {
+    public void setCreneau(List<Creneau> Creneau) {
         this.Creneau = Creneau;
     }
 

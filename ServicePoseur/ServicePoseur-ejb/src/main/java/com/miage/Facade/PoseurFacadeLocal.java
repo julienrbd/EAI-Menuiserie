@@ -30,6 +30,7 @@ public interface PoseurFacadeLocal {
 
         int count();
 
-        public void setStatut(String poseV);
+    public void create(String nom, String prenom);
+
         
 }
